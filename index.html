@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>awa.wang 🫧</title>
+  <style>
+    /* ========== 全局重置 & 基础样式 ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #ffb7c5;
+      --secondary: #c8e6f9;
+      --accent: #ffd6e0;
+      --text: #5a4a66;
+      --text-light: #8b7a99;
+      --bubble-1: #ffeaa7;
+      --bubble-2: #fab1a0;
+      --bubble-3: #a29bfe;
+      --bubble-4: #81ecec;
+      --shadow: 0 8px 32px rgba(180, 120, 200, 0.25);
+      --radius: 24px;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #fff5f7 0%, #f0f9ff 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ========== 动态背景层 ========== */
+    #bg-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+      transition: opacity 1.2s ease;
+    }
+
+    #bg-image {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: opacity 0.8s ease;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.7) 0%, rgba(255,245,247,0.9) 70%);
+      z-index: -1;
+    }
+
+    /* ========== 浮动气泡动效 ========== */
+    .bubble {
+      position: fixed;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,200,220,0.6));
+      box-shadow: inset 0 -8px 20px rgba(255, 180, 200, 0.3), 0 4px 15px rgba(0,0,0,0.08);
+      pointer-events: none;
+      animation: float-up linear infinite;
+      z-index: -1;
+      opacity: 0.85;
+    }
+
+    @keyframes float-up {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      10% { opacity: 0.85; }
+      90% { opacity: 0.85; }
+      100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+    }
+
+    /* ========== 主内容区 ========== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px 100px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ========== 头部卡片 ========== */
+    .hero {
+      text-align: center;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+      border: 3px solid rgba(255, 183, 197, 0.5);
+      animation: slide-up 0.8s ease-out;
+    }
+
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      font-size: 4.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -2px;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 20px rgba(255, 150, 180, 0.3);
+      animation: pulse 2.5s ease-in-out infinite;
+      cursor: default;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .typing-text {
+      font-size: 1.1rem;
+      min-height: 1.6em;
+      color: var(--text);
+      margin: 15px 0;
+      font-weight: 500;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.2em;
+      background: var(--primary);
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ========== 功能卡片网格 ========== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(200, 230, 249, 0.6);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .card:hover::before { left: 100%; }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 15px 40px rgba(180, 120, 200, 0.35);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 12px;
+      background: rgba(255, 183, 197, 0.2);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ========== 底部互动区 ========== */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--primary), #ff9a9e);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 120, 150, 0.4);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      margin: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 120, 150, 0.6);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 183, 197, 0.15);
+    }
+
+    .kaomoji {
+      font-size: 1.8rem;
+      margin: 20px 0;
+      animation: bounce 1.8s ease-in-out infinite;
+      display: inline-block;
+      user-select: none;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .footer-text {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-top: 25px;
+      line-height: 1.6;
+    }
+
+    .footer-text a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-text a:hover { text-decoration: underline; }
+
+    /* ========== 加载提示 ========== */
+    .loading {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.1rem;
+      color: var(--text-light);
+      background: rgba(255,255,255,0.95);
+      padding: 15px 30px;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fade-out 0.5s 2s forwards;
+      pointer-events: none;
+    }
+
+    .loading-spinner {
+      width: 20px; height: 20px;
+      border: 3px solid rgba(255, 183, 197, 0.3);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fade-out { to { opacity: 0; visibility: hidden; } }
+
+    /* ========== 响应式适配 ========== */
+    @media (max-width: 600px) {
+      .logo { font-size: 3.5rem; }
+      .subtitle { font-size: 1.1rem; }
+      .hero { padding: 30px 20px; }
+      .cards { grid-template-columns: 1fr; }
+      .btn { width: 100%; justify-content: center; }
+    }
+
+    /* ========== 颜文字彩蛋 ========== */
+    .easter-egg {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      cursor: pointer;
+      z-index: 50;
+      animation: wiggle 0.6s ease-in-out;
+      user-select: none;
+    }
+    
+    .easter-egg.show { opacity: 0.9; }
+    
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-8deg); }
+      75% { transform: rotate(8deg); }
+    }
+
+    /* ========== 轻提示 Toast ========== */
+    #toast {
+      position: fixed;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(255,255,255,0.95);
+      color: var(--text);
+      padding: 12px 28px;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      font-weight: 500;
+      z-index: 200;
+      transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+      pointer-events: none;
+      max-width: 90%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- 背景容器 -->
+  <div id="bg-container">
+    <img id="bg-image" src="" alt="ACG Background" />
+    <div class="bg-overlay"></div>
+  </div>
+
+  <!-- 加载提示 -->
+  <div class="loading">
+    <div class="loading-spinner"></div>
+    <span>正在召唤可爱背景... (◍•ᴗ•◍)</span>
+  </div>
+
+  <!-- 浮动气泡容器 -->
+  <div id="bubbles"></div>
+
+  <!-- 主内容 -->
+  <div class="container">
+    <section class="hero">
+      <div class="logo">awa.wang</div>
+      <div class="subtitle">✨ 一个冒泡的小世界 ✨</div>
+      <div class="typing-text" id="typing"></div><span class="cursor"></span>
+      <div class="kaomoji">(◍•ᴗ•◍)✧</div>
+    </section>
+
+    <!-- 功能卡片（已配置跳转链接）-->
+    <section class="cards">
+      <a href="https://blog.awa.wang" class="card" target="_blank" rel="noopener">
+        <span class="card-icon">📝</span>
+        <div class="card-title">写点东西</div>
+        <div class="card-desc">记录灵感、日常与小确幸</div>
+        <span class="card-tag">blog.awa.wang</span>
+      </a>
+      
+      <a href="https://art.awa.wang" class="card" target="_blank" rel="noopener">
+        <span class="card-icon">🎨</span>
+        <div class="card-title">看看作品</div>
+        <div class="card-desc">绘画 / 代码 / 摄影 / 小项目</div>
+        <span class="card-tag">art.awa.wang</span>
+      </a>
+      
+      <a href="https://me.awa.wang" class="card" target="_blank" rel="noopener">
+        <span class="card-icon">🔗</span>
+        <div class="card-title">找到我</div>
+        <div class="card-desc">B 站 / 知乎 / GitHub / 微博</div>
+        <span class="card-tag">me.awa.wang</span>
+      </a>
+      
+      <a href="https://engrave.ren" class="card" target="_blank" rel="noopener">
+        <span class="card-icon">⭐</span>
+        <div class="card-title">星语铭</div>
+        <div class="card-desc">是值得被铭记的事情呢✨</div>
+        <span class="card-tag" style="background:rgba(162,155,254,0.2);color:#a29bfe">engrave.ren</span>
+      </a>
+      
+      <div class="card" onclick="refreshBg(); return false;" style="cursor: pointer;">
+        <span class="card-icon">🫧</span>
+        <div class="card-title">换张背景</div>
+        <div class="card-desc">点击随机加载新ACG图片～</div>
+        <span class="card-tag">本地互动</span>
+      </div>
+    </section>
+
+    <section class="footer">
+      <button class="btn" onclick="showToast('💌 感谢来访～记得常来玩！')">
+        ✨ 打个招呼
+      </button>
+      <button class="btn btn-outline" onclick="copyUrl()">
+        🔗 复制链接
+      </button>
+      <p class="footer-text">
+        背景图由 <a href="https://www.loliapi.com/acg/" target="_blank" rel="noopener">LoliAPI</a> 提供<br/>
+        © <span id="year"></span> awa.wang · 用爱发电 🫧
+      </p>
+    </section>
+  </div>
+
+  <!-- 颜文字彩蛋 -->
+  <div class="easter-egg" id="egg" title="戳我！">🫧</div>
+
+  <!-- 轻提示 -->
+  <div id="toast">✨</div>
+
+  <script>
+    // ========== 配置 ==========
+    const BG_API = 'https://www.loliapi.com/acg/';
+    const TYPING_MESSAGES = [
+      '欢迎来到 awa 的小宇宙～ (◍•ᴗ•◍)',
+      '博客 · 作品 · 星语 · 相遇，都在这里✨',
+      '按 F 键可以召唤彩虹泡泡～（开玩笑的）',
+      '记得对自己温柔一点呀 💕'
+    ];
+    const BUBBLE_COLORS = [
+      'rgba(255, 234, 167, 0.7)',
+      'rgba(250, 177, 160, 0.7)',
+      'rgba(162, 155, 254, 0.7)',
+      'rgba(129, 236, 236, 0.7)',
+      'rgba(255, 183, 197, 0.7)'
+    ];
+
+    // ========== 初始化 ==========
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      loadBackground();
+      startTyping();
+      createBubbles(18);
+      setupEasterEgg();
+      setupKeyboardFun();
+    });
+
+    // ========== 背景图加载 ==========
+    async function loadBackground() {
+      const img = document.getElementById('bg-image');
+      const url = `${BG_API}?t=${Date.now()}`;
+      
+      const tempImg = new Image();
+      tempImg.onload = () => {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = url;
+          img.style.opacity = '0.85';
+        }, 300);
+      };
+      tempImg.onerror = () => {
+        setTimeout(() => {
+          tempImg.src = `${BG_API}?t=${Date.now() + 1}`;
+        }, 800);
+      };
+      tempImg.src = url;
+    }
+
+    function refreshBg() {
+      showToast('🫧 正在刷新背景...');
+      loadBackground();
+    }
+
+    // ========== 打字机效果 ==========
+    function startTyping() {
+      const el = document.getElementById('typing');
+      let msgIndex = 0, charIndex = 0, isDeleting = false, currentText = '';
+
+      function type() {
+        const fullText = TYPING_MESSAGES[msgIndex];
+        
+        if (isDeleting) {
+          currentText = fullText.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          currentText = fullText.substring(0, charIndex + 1);
+          charIndex++;
+        }
+        
+        el.textContent = currentText;
+        let speed = isDeleting ? 40 : 80;
+        
+        if (!isDeleting && charIndex === fullText.length) {
+          speed = 1800;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          msgIndex = (msgIndex + 1) % TYPING_MESSAGES.length;
+          speed = 300;
+        }
+        setTimeout(type, speed);
+      }
+      setTimeout(type, 500);
+    }
+
+    // ========== 浮动气泡生成 ==========
+    function createBubbles(count) {
+      const container = document.getElementById('bubbles');
+      
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const bubble = document.createElement('div');
+          bubble.className = 'bubble';
+          
+          const size = Math.random() * 60 + 30;
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+          bubble.style.left = `${Math.random() * 100}%`;
+          
+          const duration = Math.random() * 20 + 15;
+          bubble.style.animationDuration = `${duration}s`;
+          bubble.style.animationDelay = `${Math.random() * 5}s`;
+          bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), ${BUBBLE_COLORS[Math.floor(Math.random() * BUBBLE_COLORS.length)]})`;
+          
+          if (Math.random() > 0.85) {
+            bubble.innerHTML = `<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:${size*0.35}px;color:rgba(90,74,102,0.7);">◡</span>`;
+          }
+          
+          container.appendChild(bubble);
+          
+          setTimeout(() => {
+            bubble.remove();
+            createBubbles(1);
+          }, duration * 1000 + 1000);
+          
+        }, i * 300);
+      }
+    }
+
+    // ========== 轻提示 Toast ==========
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+      }, 2200);
+    }
+
+    // ========== 复制链接 ==========
+    function copyUrl() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast('🔗 链接已复制～');
+      }).catch(() => {
+        showToast('😢 复制失败，手动复制吧～');
+      });
+    }
+
+    // ========== 颜文字彩蛋 ==========
+    function setupEasterEgg() {
+      const egg = document.getElementById('egg');
+      const eggs = ['(◍•ᴗ•◍)', '✧◝(⁰▿⁰)◜✧', '🫧', '✨', '(⁄ ⁄•⁄ω⁄•⁄ ⁄)', '♡'];
+      let idx = 0;
+      
+      setTimeout(() => {
+        egg.classList.add('show');
+        setInterval(() => {
+          egg.textContent = eggs[idx];
+          idx = (idx + 1) % eggs.length;
+        }, 2500);
+      }, 3000);
+      
+      egg.addEventListener('click', () => {
+        egg.style.transform = 'scale(1.3) rotate(10deg)';
+        showToast('✨ 被你戳到啦～');
+        setTimeout(() => { egg.style.transform = ''; }, 200);
+      });
+    }
+
+    // ========== 键盘小彩蛋 ==========
+    function setupKeyboardFun() {
+      document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === 'f') {
+          e.preventDefault();
+          createConfetti();
+          showToast('🎉 F 键召唤成功～');
+        }
+      });
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 25; i++) {
+        const conf = document.createElement('div');
+        conf.textContent = ['✨', '🫧', '💖', '🌸', '⭐'][Math.floor(Math.random() * 5)];
+        conf.style.cssText = `
+          position: fixed;
+          left: ${Math.random() * 100}%;
+          top: 100%;
+          font-size: ${Math.random() * 16 + 14}px;
+          pointer-events: none;
+          z-index: 150;
+          animation: confetti-fall ${Math.random() * 2 + 2}s linear forwards;
+        `;
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 4000);
+      }
+      
+      if (!document.getElementById('confetti-style')) {
+        const style = document.createElement('style');
+        style.id = 'confetti-style';
+        style.textContent = `
+          @keyframes confetti-fall {
+            to {
+              transform: translateY(-120vh) rotate(720deg);
+              opacity: 0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+
+    // ========== 背景图加载失败降级 ==========
+    document.getElementById('bg-image').onerror = function() {
+      this.src = 'https://picsum.photos/1920/1080?random=awa';
+      showToast('🎨 使用备用背景～');
+    };
+  </script>
+</body>
+</html>
