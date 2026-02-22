@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>awa.wang 🫧</title>
   <style>
     /* ========== 全局重置 & 基础样式 ========== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --primary: #ffb7c5;
@@ -34,14 +39,17 @@
     /* ========== 动态背景层 ========== */
     #bg-container {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: -2;
       transition: opacity 1.2s ease;
     }
 
     #bg-image {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       opacity: 0.85;
       transition: opacity 0.8s ease;
@@ -49,9 +57,11 @@
 
     .bg-overlay {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.7) 0%, rgba(255,245,247,0.9) 70%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 245, 247, 0.9) 70%);
       z-index: -1;
     }
 
@@ -59,8 +69,8 @@
     .bubble {
       position: fixed;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,200,220,0.6));
-      box-shadow: inset 0 -8px 20px rgba(255, 180, 200, 0.3), 0 4px 15px rgba(0,0,0,0.08);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 200, 220, 0.6));
+      box-shadow: inset 0 -8px 20px rgba(255, 180, 200, 0.3), 0 4px 15px rgba(0, 0, 0, 0.08);
       pointer-events: none;
       animation: float-up linear infinite;
       z-index: -1;
@@ -68,10 +78,23 @@
     }
 
     @keyframes float-up {
-      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
-      10% { opacity: 0.85; }
-      90% { opacity: 0.85; }
-      100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+      0% {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.85;
+      }
+
+      90% {
+        opacity: 0.85;
+      }
+
+      100% {
+        transform: translateY(-10vh) scale(1.1);
+        opacity: 0;
+      }
     }
 
     /* ========== 主内容区 ========== */
@@ -97,8 +120,15 @@
     }
 
     @keyframes slide-up {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .logo {
@@ -117,8 +147,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
     }
 
     .subtitle {
@@ -147,8 +184,15 @@
     }
 
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
     }
 
     /* ========== 功能卡片网格 ========== */
@@ -177,13 +221,17 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
       transition: left 0.6s ease;
     }
 
-    .card:hover::before { left: 100%; }
+    .card:hover::before {
+      left: 100%;
+    }
 
     .card:hover {
       transform: translateY(-8px) scale(1.02);
@@ -256,7 +304,9 @@
       box-shadow: 0 10px 30px rgba(255, 120, 150, 0.6);
     }
 
-    .btn:active { transform: translateY(0); }
+    .btn:active {
+      transform: translateY(0);
+    }
 
     .btn-outline {
       background: transparent;
@@ -277,8 +327,15 @@
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
     }
 
     .footer-text {
@@ -294,16 +351,19 @@
       font-weight: 600;
     }
 
-    .footer-text a:hover { text-decoration: underline; }
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
 
     /* ========== 加载提示 ========== */
     .loading {
       position: fixed;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       font-size: 1.1rem;
       color: var(--text-light);
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       padding: 15px 30px;
       border-radius: 50px;
       box-shadow: var(--shadow);
@@ -316,29 +376,56 @@
     }
 
     .loading-spinner {
-      width: 20px; height: 20px;
+      width: 20px;
+      height: 20px;
       border: 3px solid rgba(255, 183, 197, 0.3);
       border-top-color: var(--primary);
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes fade-out { to { opacity: 0; visibility: hidden; } }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes fade-out {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
 
     /* ========== 响应式适配 ========== */
     @media (max-width: 600px) {
-      .logo { font-size: 3.5rem; }
-      .subtitle { font-size: 1.1rem; }
-      .hero { padding: 30px 20px; }
-      .cards { grid-template-columns: 1fr; }
-      .btn { width: 100%; justify-content: center; }
+      .logo {
+        font-size: 3.5rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+      }
+
+      .hero {
+        padding: 30px 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     /* ========== 颜文字彩蛋 ========== */
     .easter-egg {
       position: fixed;
-      bottom: 20px; right: 20px;
+      bottom: 20px;
+      right: 20px;
       font-size: 1.5rem;
       opacity: 0;
       transition: opacity 0.4s ease;
@@ -347,34 +434,48 @@
       animation: wiggle 0.6s ease-in-out;
       user-select: none;
     }
-    
-    .easter-egg.show { opacity: 0.9; }
-    
+
+    .easter-egg.show {
+      opacity: 0.9;
+    }
+
     @keyframes wiggle {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-8deg); }
-      75% { transform: rotate(8deg); }
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-8deg);
+      }
+
+      75% {
+        transform: rotate(8deg);
+      }
     }
 
     /* ========== 轻提示 Toast ========== */
     #toast {
       position: fixed;
-      bottom: 30px; left: 50%;
+      bottom: 30px;
+      left: 50%;
       transform: translateX(-50%) translateY(100px);
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       color: var(--text);
       padding: 12px 28px;
       border-radius: 50px;
       box-shadow: var(--shadow);
       font-weight: 500;
       z-index: 200;
-      transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       pointer-events: none;
       max-width: 90%;
       text-align: center;
     }
   </style>
 </head>
+
 <body>
   <!-- 背景容器 -->
   <div id="bg-container">
@@ -408,28 +509,35 @@
         <div class="card-desc">记录灵感、日常与小确幸</div>
         <span class="card-tag">blog.awa.wang</span>
       </a>
-      
+
       <a href="https://art.awa.wang" class="card" target="_blank" rel="noopener">
         <span class="card-icon">🎨</span>
         <div class="card-title">看看作品</div>
         <div class="card-desc">绘画 / 代码 / 摄影 / 小项目</div>
         <span class="card-tag">art.awa.wang</span>
       </a>
-      
+
       <a href="https://me.awa.wang" class="card" target="_blank" rel="noopener">
         <span class="card-icon">🔗</span>
         <div class="card-title">找到我</div>
         <div class="card-desc">B 站 / 知乎 / GitHub / 微博</div>
         <span class="card-tag">me.awa.wang</span>
       </a>
-      
+
       <a href="https://engrave.ren" class="card" target="_blank" rel="noopener">
         <span class="card-icon">⭐</span>
         <div class="card-title">星语铭</div>
         <div class="card-desc">是值得被铭记的事情呢✨</div>
         <span class="card-tag" style="background:rgba(162,155,254,0.2);color:#a29bfe">engrave.ren</span>
       </a>
-      
+
+      <a href="/games" class="card">
+        <span class="card-icon">🎮</span>
+        <div class="card-title">玩点小的</div>
+        <div class="card-desc">治愈系迷你游戏合集～</div>
+        <span class="card-tag" style="background:rgba(129,236,236,0.2);color:#81ecec">awa.wang/games</span>
+      </a>
+
       <div class="card" onclick="refreshBg(); return false;" style="cursor: pointer;">
         <span class="card-icon">🫧</span>
         <div class="card-title">换张背景</div>
@@ -446,7 +554,7 @@
         🔗 复制链接
       </button>
       <p class="footer-text">
-        背景图由 <a href="https://www.loliapi.com/acg/" target="_blank" rel="noopener">LoliAPI</a> 提供<br/>
+        背景图由 <a href="https://www.loliapi.com/acg/" target="_blank" rel="noopener">LoliAPI</a> 提供<br />
         © <span id="year"></span> awa.wang · 用爱发电 🫧
       </p>
     </section>
@@ -489,7 +597,7 @@
     async function loadBackground() {
       const img = document.getElementById('bg-image');
       const url = `${BG_API}?t=${Date.now()}`;
-      
+
       const tempImg = new Image();
       tempImg.onload = () => {
         img.style.opacity = '0';
@@ -518,7 +626,7 @@
 
       function type() {
         const fullText = TYPING_MESSAGES[msgIndex];
-        
+
         if (isDeleting) {
           currentText = fullText.substring(0, charIndex - 1);
           charIndex--;
@@ -526,10 +634,10 @@
           currentText = fullText.substring(0, charIndex + 1);
           charIndex++;
         }
-        
+
         el.textContent = currentText;
         let speed = isDeleting ? 40 : 80;
-        
+
         if (!isDeleting && charIndex === fullText.length) {
           speed = 1800;
           isDeleting = true;
@@ -546,33 +654,33 @@
     // ========== 浮动气泡生成 ==========
     function createBubbles(count) {
       const container = document.getElementById('bubbles');
-      
+
       for (let i = 0; i < count; i++) {
         setTimeout(() => {
           const bubble = document.createElement('div');
           bubble.className = 'bubble';
-          
+
           const size = Math.random() * 60 + 30;
           bubble.style.width = `${size}px`;
           bubble.style.height = `${size}px`;
           bubble.style.left = `${Math.random() * 100}%`;
-          
+
           const duration = Math.random() * 20 + 15;
           bubble.style.animationDuration = `${duration}s`;
           bubble.style.animationDelay = `${Math.random() * 5}s`;
           bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), ${BUBBLE_COLORS[Math.floor(Math.random() * BUBBLE_COLORS.length)]})`;
-          
+
           if (Math.random() > 0.85) {
-            bubble.innerHTML = `<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:${size*0.35}px;color:rgba(90,74,102,0.7);">◡</span>`;
+            bubble.innerHTML = `<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:${size * 0.35}px;color:rgba(90,74,102,0.7);">◡</span>`;
           }
-          
+
           container.appendChild(bubble);
-          
+
           setTimeout(() => {
             bubble.remove();
             createBubbles(1);
           }, duration * 1000 + 1000);
-          
+
         }, i * 300);
       }
     }
@@ -601,7 +709,7 @@
       const egg = document.getElementById('egg');
       const eggs = ['(◍•ᴗ•◍)', '✧◝(⁰▿⁰)◜✧', '🫧', '✨', '(⁄ ⁄•⁄ω⁄•⁄ ⁄)', '♡'];
       let idx = 0;
-      
+
       setTimeout(() => {
         egg.classList.add('show');
         setInterval(() => {
@@ -609,7 +717,7 @@
           idx = (idx + 1) % eggs.length;
         }, 2500);
       }, 3000);
-      
+
       egg.addEventListener('click', () => {
         egg.style.transform = 'scale(1.3) rotate(10deg)';
         showToast('✨ 被你戳到啦～');
@@ -644,7 +752,7 @@
         document.body.appendChild(conf);
         setTimeout(() => conf.remove(), 4000);
       }
-      
+
       if (!document.getElementById('confetti-style')) {
         const style = document.createElement('style');
         style.id = 'confetti-style';
@@ -661,10 +769,11 @@
     }
 
     // ========== 背景图加载失败降级 ==========
-    document.getElementById('bg-image').onerror = function() {
+    document.getElementById('bg-image').onerror = function () {
       this.src = 'https://picsum.photos/1920/1080?random=awa';
       showToast('🎨 使用备用背景～');
     };
   </script>
 </body>
+
 </html>
