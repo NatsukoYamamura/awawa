@@ -1,11 +1,15 @@
 /* ===== 变量定义 ===== */
 :root {
-    --glass-bg: rgba(255, 255, 255, 0.15);
-    --glass-border: rgba(255, 255, 255, 0.25);
+    --glass-bg: rgba(20, 20, 35, 0.65);
+    /* 加深背景 */
+    --glass-border: rgba(255, 255, 255, 0.3);
     --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-secondary: rgba(255, 255, 255, 0.95);
     --accent: #ff7eb9;
     --accent-hover: #ff5ca1;
+    --text-stroke: 0 0 3px rgba(0, 0, 0, 0.8),
+        0 0 6px rgba(0, 0, 0, 0.6),
+        1px 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 /* ===== 基础重置 ===== */
@@ -28,14 +32,14 @@ body {
     transition: background-image 0.5s ease;
 }
 
-/* ===== 磨砂玻璃特效 ===== */
+/* ===== 磨砂玻璃特效（加深） ===== */
 .glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== 导航栏 ===== */
@@ -49,6 +53,10 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(20, 20, 35, 0.85);
+    /* 导航栏更深 */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
 nav .logo {
@@ -56,6 +64,7 @@ nav .logo {
     font-weight: bold;
     color: var(--text-primary);
     text-decoration: none;
+    text-shadow: var(--text-stroke);
 }
 
 nav ul {
@@ -69,11 +78,14 @@ nav a {
     text-decoration: none;
     transition: color 0.3s;
     font-size: 0.95rem;
+    text-shadow: var(--text-stroke);
+    font-weight: 500;
 }
 
 nav a:hover,
 nav a.active {
     color: var(--accent);
+    text-shadow: 0 0 10px var(--accent), var(--text-stroke);
 }
 
 /* ===== 主内容区 ===== */
@@ -103,6 +115,7 @@ main {
     object-fit: cover;
     margin-bottom: 1rem;
     transition: transform 0.3s;
+    box-shadow: 0 4px 20px rgba(255, 126, 185, 0.4);
 }
 
 .avatar:hover {
@@ -114,35 +127,44 @@ main {
     color: var(--text-secondary);
     margin: 1rem 0;
     line-height: 1.8;
+    text-shadow: var(--text-stroke);
+    font-size: 1.05rem;
 }
 
-/* ===== 标题样式 ===== */
+/* ===== 标题样式（加强描边） ===== */
 h1,
 h2,
 h3 {
     color: var(--text-primary);
     margin: 1.2rem 0 0.8rem;
+    text-shadow: var(--text-stroke);
+    font-weight: 700;
 }
 
 h1 {
     font-size: 1.8rem;
+    text-shadow: 0 0 15px rgba(255, 126, 185, 0.5), var(--text-stroke);
 }
 
 h2 {
     font-size: 1.4rem;
     border-left: 4px solid var(--accent);
     padding-left: 0.8rem;
+    text-shadow: var(--text-stroke);
 }
 
 h3 {
     font-size: 1.1rem;
     color: var(--accent);
+    text-shadow: 0 0 8px rgba(255, 126, 185, 0.6), var(--text-stroke);
 }
 
 /* ===== 文本与列表 ===== */
 p {
     margin: 0.6rem 0;
     color: var(--text-secondary);
+    text-shadow: var(--text-stroke);
+    font-weight: 400;
 }
 
 ul {
@@ -153,6 +175,15 @@ ul {
 li {
     margin: 0.3rem 0;
     color: var(--text-secondary);
+    text-shadow: var(--text-stroke);
+}
+
+/* 加粗强调文字 */
+strong,
+b {
+    color: #ffffff;
+    text-shadow: var(--text-stroke);
+    font-weight: 700;
 }
 
 /* ===== 价格卡片 ===== */
@@ -160,17 +191,21 @@ li {
     padding: 1rem 1.5rem;
     margin: 0.8rem 0;
     border-left: 3px solid var(--accent);
+    background: rgba(30, 30, 50, 0.5);
+    /* 卡片加深 */
+    border-radius: 8px;
 }
 
 .price-card.highlight {
-    background: rgba(255, 126, 185, 0.15);
+    background: rgba(255, 126, 185, 0.25);
     border-left-color: #ff5ca1;
 }
 
 .price {
     font-weight: bold;
     color: var(--accent);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(255, 126, 185, 0.7), var(--text-stroke);
 }
 
 /* ===== 按钮 ===== */
@@ -181,28 +216,32 @@ li {
     color: white;
     text-decoration: none;
     border-radius: 25px;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s;
     border: none;
     cursor: pointer;
     margin: 0.3rem 0.2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 15px rgba(255, 126, 185, 0.4);
 }
 
 .btn:hover {
     background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 126, 185, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 126, 185, 0.6);
 }
 
 .btn-outline {
     background: transparent;
     border: 2px solid var(--accent);
     color: var(--accent);
+    text-shadow: var(--text-stroke);
 }
 
 .btn-outline:hover {
     background: var(--accent);
     color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* ===== 提示框 ===== */
@@ -210,18 +249,21 @@ li {
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 8px;
-    background: rgba(255, 193, 7, 0.15);
+    background: rgba(255, 193, 7, 0.25);
     border-left: 4px solid #ffc107;
     font-size: 0.95rem;
+    color: #fff;
+    text-shadow: var(--text-stroke);
+    font-weight: 500;
 }
 
 .warning {
-    background: rgba(220, 53, 69, 0.15);
+    background: rgba(220, 53, 69, 0.25);
     border-left-color: #dc3545;
 }
 
 .success {
-    background: rgba(40, 167, 69, 0.15);
+    background: rgba(40, 167, 69, 0.25);
     border-left-color: #28a745;
 }
 
@@ -254,6 +296,12 @@ li {
     font-weight: bold;
     font-size: 0.9rem;
     color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 8px rgba(255, 126, 185, 0.5);
+}
+
+.workflow li {
+    text-shadow: var(--text-stroke);
 }
 
 /* ===== 示例网格 ===== */
@@ -269,17 +317,33 @@ li {
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s;
+    background: rgba(30, 30, 50, 0.6);
 }
 
 .sample-card:hover {
     transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(255, 126, 185, 0.4);
 }
 
 .sample-card img {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 0.5rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.sample-card .title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    text-shadow: var(--text-stroke);
+}
+
+.sample-card .tag {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-top: 0.3rem;
+    text-shadow: var(--text-stroke);
 }
 
 /* ===== 页脚 ===== */
@@ -288,11 +352,19 @@ footer {
     padding: 2rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
+    background: rgba(20, 20, 35, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
 footer a {
     color: var(--accent);
     text-decoration: none;
+    text-shadow: var(--text-stroke);
+}
+
+footer a:hover {
+    text-shadow: 0 0 10px var(--accent), var(--text-stroke);
 }
 
 /* ===== 响应式适配 ===== */
@@ -330,19 +402,6 @@ footer a {
     display: none;
 }
 
-/* ===== 页面特有样式（sample.html） ===== */
-.sample-card .title {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--text-primary);
-}
-
-.sample-card .tag {
-    font-size: 0.8rem;
-    color: var(--accent);
-    margin-top: 0.3rem;
-}
-
 /* ===== about.html 特有 ===== */
 .info-grid {
     display: grid;
@@ -354,11 +413,18 @@ footer a {
 .info-item {
     padding: 0.8rem;
     text-align: center;
+    background: rgba(30, 30, 50, 0.4);
+    border-radius: 8px;
 }
 
 .info-item .icon {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+}
+
+.info-item strong,
+.info-item div {
+    text-shadow: var(--text-stroke);
 }
 
 .tool-list {
@@ -370,10 +436,12 @@ footer a {
 
 .tool-tag {
     padding: 0.3rem 0.8rem;
-    background: rgba(255, 126, 185, 0.2);
+    background: rgba(255, 126, 185, 0.3);
     border-radius: 15px;
     font-size: 0.85rem;
     color: var(--accent);
+    text-shadow: var(--text-stroke);
+    font-weight: 600;
 }
 
 .verify-card {
@@ -381,4 +449,53 @@ footer a {
     padding: 1rem;
     text-align: center;
     border: 1px dashed var(--accent);
+    background: rgba(30, 30, 50, 0.5);
+    border-radius: 8px;
+}
+
+.verify-card p {
+    text-shadow: var(--text-stroke);
+}
+
+/* ===== 链接样式 ===== */
+a {
+    text-shadow: var(--text-stroke);
+}
+
+/* ===== 代码/引用块 ===== */
+code,
+.code-block {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    color: #ff7eb9;
+    text-shadow: var(--text-stroke);
+}
+
+/* ===== 表格样式（如有需要） ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: rgba(30, 30, 50, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-shadow: var(--text-stroke);
+}
+
+th {
+    background: rgba(255, 126, 185, 0.3);
+    font-weight: 700;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
