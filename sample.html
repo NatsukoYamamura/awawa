@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品示例 | 半笺绘梦</title>
+    <link rel="stylesheet" href="common.css">
+    <script src="common.js" defer></script>
+    <style>
+        .sample-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .sample-card {
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .sample-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(255, 126, 185, 0.3);
+        }
+
+        .sample-card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            object-fit: cover;
+            background: rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.6rem;
+        }
+
+        .sample-card .title {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .sample-card .tag {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="glass">
+        <a href="index.html" class="logo">半笺绘梦</a>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="live2d.html">价格&委托</a></li>
+            <li><a href="sample.html" class="active">作品示例</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="about.html">关于我</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="glass content">
+            <h2>模型展示示例</h2>
+            <p>点击卡片跳转哔哩哔哩观看完整演示视频</p>
+
+            <div class="sample-grid">
+                <!-- 示例卡片模板，复制添加 -->
+                <a href="https://www.bilibili.com/video/BVxxxxx" target="_blank" class="sample-card glass">
+                    <img src="https://www.loliapi.com/acg/" alt="示例封面">
+                    <div class="title">Q版萌系·小狐娘</div>
+                    <div class="tag">Q版 · 6表情 · 动态按键</div>
+                </a>
+
+                <a href="https://www.bilibili.com/video/BVxxxxx" target="_blank" class="sample-card glass">
+                    <img src="https://www.loliapi.com/acg/" alt="示例封面">
+                    <div class="title">正比写实·古风剑客</div>
+                    <div class="tag">正比 · 服装切换 · 高级物理</div>
+                </a>
+
+                <a href="https://www.bilibili.com/video/BVxxxxx" target="_blank" class="sample-card glass">
+                    <img src="https://www.loliapi.com/acg/" alt="示例封面">
+                    <div class="title">Q版·赛博机械少女</div>
+                    <div class="tag">Q版 · 特效按键 · 呼吸动画</div>
+                </a>
+
+                <a href="https://www.bilibili.com/video/BVxxxxx" target="_blank" class="sample-card glass">
+                    <img src="https://www.loliapi.com/acg/" alt="示例封面">
+                    <div class="title">正比·现代偶像</div>
+                    <div class="tag">正比 · 面捕精调 · 商用授权</div>
+                </a>
+            </div>
+
+            <p class="notice" style="margin-top:1.5rem">
+                示例持续更新中～ 想看更多作品？欢迎 <a href="https://space.bilibili.com/491378910" target="_blank"
+                    style="color:var(--accent)">关注B站动态</a>
+            </p>
+        </section>
+    </main>
+
+    <footer class="glass">
+        <p>© 2026 半笺绘梦 · Live2D Modeling</p>
+        <p><a href="index.html">返回首页</a></p>
+    </footer>
+</body>
+
+</html>

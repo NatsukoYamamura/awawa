@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>关于我 | 半笺绘梦</title>
+    <link rel="stylesheet" href="common.css">
+    <script src="common.js" defer></script>
+    <style>
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            padding: 0.8rem;
+            text-align: center;
+        }
+
+        .tool-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tool-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 126, 185, 0.2);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .verify-card {
+            margin-top: 1rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1px dashed var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="glass">
+        <a href="index.html" class="logo">半笺绘梦</a>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="live2d.html">价格&委托</a></li>
+            <li><a href="sample.html">作品示例</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="about.html" class="active">关于我</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="glass profile content">
+            <img src="avatar.png" alt="半笺绘梦头像" class="avatar" onerror="this.src='https://www.loliapi.com/acg/'">
+            <h1>半笺绘梦</h1>
+            <p class="signature">绘梦为笺，笔墨寄心</p>
+        </section>
+
+        <section class="glass content">
+            <h2>基本信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div><strong>名称</strong></div>
+                    <div>绘梦 / 半笺绘梦</div>
+                </div>
+                <div class="info-item">
+                    <div><strong>性别</strong></div>
+                    <div>男</div>
+                </div>
+                <div class="info-item">
+                    <div><strong>国籍</strong></div>
+                    <div>中国</div>
+                </div>
+                <div class="info-item">
+                    <div><strong>职业</strong></div>
+                    <div>自由职业 · Live2D建模师</div>
+                </div>
+            </div>
+
+            <p style="margin-top:1.2rem">
+                <a href="https://space.bilibili.com/491378910" target="_blank" class="btn">
+                    哔哩哔哩：@半笺绘梦
+                </a>
+            </p>
+        </section>
+
+        <section class="glass content">
+            <h2>吃饭工具</h2>
+
+            <h3>物理装备</h3>
+            <p>筷子和勺子（干饭必备）</p>
+
+            <h3 style="margin-top:1rem">常用软件</h3>
+            <div class="tool-list">
+                <span class="tool-tag">Photoshop</span>
+                <span class="tool-tag">Live2D Cubism Editor</span>
+                <span class="tool-tag">VBridger</span>
+            </div>
+
+            <h3 style="margin-top:1rem">常用设备</h3>
+            <ul>
+                <li>Laptop: Lenovo ThinkBook 16+</li>
+                <li>数位板: Gaomon GM116HD</li>
+            </ul>
+        </section>
+
+        <section class="glass content">
+            <h2>私人账号验证</h2>
+            <div class="verify-card">
+                <p>谨防冒充！本人官方账号特征：</p>
+                <p style="margin:0.8rem 0; font-weight:500">
+                    QQ等级 ≥ 62 · 年费SVIP6 · 拥有专属ID
+                </p>
+                <p class="notice warning">不满足以上条件者均为冒充，请勿轻信！</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass">
+        <p>© 2026 半笺绘梦 · Live2D Modeling</p>
+        <p><a href="index.html">返回首页</a></p>
+    </footer>
+</body>
+
+</html>
