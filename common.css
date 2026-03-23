@@ -384,3 +384,50 @@ th {
 td {
   color: var(--text-secondary);
 }
+
+/* 版权提示框 */
+.license-notice {
+  background: rgba(255, 235, 59, 0.15); /* 淡黄色背景 */
+  border-left: 4px solid #ffc107;       /* 黄色左边框 */
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+.license-notice .notice-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.license-notice .notice-content p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.license-notice strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* 价格卡片内的文字强调 */
+.price-card p strong {
+  color: var(--text-primary); /* 标签文字加深 */
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+
+/* 买断授权卡片内的文字颜色修正 */
+.price-card.highlight p {
+  color: var(--text-primary);
+}
+
+/* 危险/重要提示文字颜色 */
+.text-danger {
+  color: #ff3d8f;
+  font-weight: bold;
+}
